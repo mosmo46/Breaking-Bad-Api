@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 
-export const Header = ({episode}) => {
+export const Header = ({ episode }) => {
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
@@ -11,8 +11,6 @@ export const Header = ({episode}) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/episode">Episodes</Nav.Link>
-              <Nav.Link href='/characters'>Characters</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

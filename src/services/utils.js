@@ -1,12 +1,17 @@
 import { getEpisodesBySeries } from "./api";
+import { BETTER_CALL_SAUL_SERIES, BREAKING_BAD_SERIES } from "./constants";
 
+export const convertEmptyStringToPlusSign = (term) => {
+  const PLUS = "+";
+  return term.split(" ").join(PLUS);
+};
 export async function getEpisode() {
-
   const [BCSRes, BBRes] = await Promise.all([
-    getEpisodesBySeries("Better+Call+Saul"),
-    getEpisodesBySeries("Breaking+Bad"),
+    getEpisodesBySeries(
+      convertEmptyStringToPlusSign(BETTER_CALL_SAUL_SERIES.name)
+    ),
+    getEpisodesBySeries(convertEmptyStringToPlusSign(BREAKING_BAD_SERIES.name)),
   ]);
-
 
   const BCSBySeason = {};
   const BBBySeason = {};
@@ -19,7 +24,6 @@ export async function getEpisode() {
       BCSBySeason[s] = [eps];
     }
   }, {});
-  console.log(BCSBySeason);
 
   BBRes.forEach((eps) => {
     const s = Number(eps.season);
@@ -29,7 +33,6 @@ export async function getEpisode() {
       BBBySeason[s] = [eps];
     }
   });
-  console.log(BBBySeason);
 
   return { BCSBySeason, BBBySeason };
 }
